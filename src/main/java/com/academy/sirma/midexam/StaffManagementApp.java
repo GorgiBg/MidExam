@@ -1,5 +1,6 @@
 package com.academy.sirma.midexam;
 
+import com.academy.sirma.midexam.constants.StringConstants;
 import com.academy.sirma.midexam.entities.Manager;
 import com.academy.sirma.midexam.entities.StaffManager;
 import com.academy.sirma.midexam.services.Service;
@@ -10,9 +11,9 @@ import java.io.*;
 public class StaffManagementApp {
     public static void main(String[] args) throws IOException {
 // implement fileReader/fileWriter to handle saving into csv/json
-        String path = "";
-        FileReader reader = new FileReader(new File(path));
-        FileWriter writer = new FileWriter(new File(path));
+        String path = StringConstants.JSON_FILE_PATH;
+        FileReader reader = new FileReader(path);
+        FileWriter writer = new FileWriter(path);
         String command = "";
         Service service = new StaffService(reader, writer);
         Manager manager = new StaffManager(service);
