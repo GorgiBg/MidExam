@@ -48,7 +48,6 @@ public class StaffService implements Service {
 
     public void saveData(List<Employee> dataList) {
         try {
-            // Use try-with-resources to automatically close the BufferedWriter
             try (BufferedWriter bufferedWriter = Files.newBufferedWriter(
                 Paths.get(StringConstants.JSON_FILE_PATH),
                 StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
