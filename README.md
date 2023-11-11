@@ -10,7 +10,6 @@ Welcome to the Staff Management System! This system allows you to manage and tra
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Commands](#commands)
 
 ## Features
