@@ -1,12 +1,13 @@
 package com.academy.sirma.midexam.entities;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Company {
     private Map<Integer, Employee> employees;
 
-    public Company(Map<Integer, Employee> employees) {
-        this.employees = employees;
+    public Company() {
+        this.employees = new HashMap<>();
     }
 
     public Map<Integer, Employee> getEmployees() {

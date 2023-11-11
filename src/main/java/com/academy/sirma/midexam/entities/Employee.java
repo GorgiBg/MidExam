@@ -1,5 +1,7 @@
 package com.academy.sirma.midexam.entities;
 
+import java.time.LocalDate;
+
 public class Employee {
     private int id;
     private String name;
@@ -11,10 +13,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String name, String startDate, String department, String role, double salary) {
+    public Employee(int id, String name, String department, String role, double salary) {
         this.id = id;
         this.name = name;
-        this.startDate = startDate;
+        this.startDate = String.valueOf(LocalDate.now());
         this.department = department;
         this.role = role;
         this.salary = salary;
@@ -54,5 +56,29 @@ public class Employee {
 
     public double getSalary() {
         return salary;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 }
