@@ -8,13 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
-public class StaffManager implements Manager{
+public class StaffManager implements Manager {
 
     private final Service service;
     private final Scanner scanner;
-
     private final Company company;
 
     public StaffManager(Service service) {
@@ -58,6 +56,7 @@ public class StaffManager implements Manager{
 
     private void saveAndExit() {
         try {
+            //get the list of employees from the map values set and saves them
             service.saveData(new ArrayList<>(company.getEmployees().values()));
             System.out.println("Data saved successfully. Exiting...");
             System.exit(0);
@@ -78,9 +77,9 @@ public class StaffManager implements Manager{
     }
 
     private void searchName(String name) {
-        // Filter employees by name
+        // Filter employees by first name
         List<Employee> employeesWithName = company.getEmployees().values().stream()
-            .filter(employee -> employee.getName().equalsIgnoreCase(name))
+            .filter(employee -> employee.getName().split("\\s+")[0].equalsIgnoreCase(name))
             .toList();
 
         if (employeesWithName.isEmpty()) {
@@ -92,7 +91,6 @@ public class StaffManager implements Manager{
     }
 
     private void searchDepartment(String department) {
-
         // Filter employees by department
         List<Employee> employeesInDepartment = company.getEmployees().values().stream()
             .filter(employee -> employee.getDepartment().equalsIgnoreCase(department))

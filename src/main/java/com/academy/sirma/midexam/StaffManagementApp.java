@@ -1,20 +1,17 @@
 package com.academy.sirma.midexam;
 
 import com.academy.sirma.midexam.constants.StringConstants;
-import com.academy.sirma.midexam.entities.Employee;
 import com.academy.sirma.midexam.entities.Manager;
 import com.academy.sirma.midexam.entities.StaffManager;
 import com.academy.sirma.midexam.services.Service;
 import com.academy.sirma.midexam.services.StaffService;
 
 import java.io.*;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class StaffManagementApp {
     public static void main(String[] args) throws IOException {
-// implement fileReader/fileWriter to handle saving into csv/json
+        // implement fileReader/fileWriter to handle saving into csv/json
         BufferedReader reader = new BufferedReader(new FileReader(StringConstants.JSON_FILE_PATH));
         BufferedWriter writer = new BufferedWriter(new FileWriter(StringConstants.JSON_FILE_PATH));
         Service service = new StaffService(reader, writer);
@@ -22,7 +19,6 @@ public class StaffManagementApp {
         System.out.println("Welcome to Staff Management System");
         displayCommands();
         boolean isRunning = true;
-        //testIfWriteAndReadSuccessfully(service);
 
         Scanner sc = new Scanner(System.in);
         String command;
@@ -31,17 +27,6 @@ public class StaffManagementApp {
             command = sc.nextLine();
             manager.execute(command);
         }
-    }
-
-    private static void testIfWriteAndReadSuccessfully(Service service) throws IOException {
-        Employee employee = new Employee(1, "G", "IT", "Junior Developer", 2000.15);
-        service.saveData(List.of(employee));
-        Map<Integer, Employee> employees = service.readData(StringConstants.JSON_FILE_PATH);
-        for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
-            System.out.println(entry.getKey() + entry.getValue().toString());
-        }
-
-
     }
 
     private static void displayCommands() {

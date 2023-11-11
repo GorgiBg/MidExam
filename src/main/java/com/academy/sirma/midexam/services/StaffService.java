@@ -41,20 +41,23 @@ public class StaffService implements Service {
         List<Employee> employees = this.mapper.readValue(file, new TypeReference<>() {});
 
         // Convert the list to a Map using employee ID as the key
-        Map<Integer, Employee> employeeMap = employees.stream()
+        return employees.stream()
             .collect(Collectors.toMap(Employee::getId, Function.identity()));
-
-        return employeeMap;
     }
 
 
-    public void saveData(List<Employee> dataList) throws IOException {
-        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(
-            Paths.get(StringConstants.JSON_FILE_PATH),
-            StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
+    public void saveData(List<Employee> dataList) {
+        try {
+            // Use try-with-resources to automatically close the BufferedWriter
+            try (BufferedWriter bufferedWriter = Files.newBufferedWriter(
+                Paths.get(StringConstants.JSON_FILE_PATH),
+                StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
 
-            String jsonArray = mapper.writeValueAsString(dataList);
-            bufferedWriter.write(jsonArray);
+                String jsonArray = mapper.writeValueAsString(dataList);
+                bufferedWriter.write(jsonArray);
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving data to JSON file: " + e.getMessage());
         }
     }
 }
